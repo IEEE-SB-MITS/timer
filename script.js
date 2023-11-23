@@ -14,7 +14,9 @@ const storedUserDate = localStorage.getItem('userDate');
 const userDateInput = storedUserDate || prompt("Enter the future date (YYYY-MM-DD HH:MM:SS):");
 localStorage.setItem('userDate', userDateInput);
 
-const countToDate = new Date(userDateInput).getTime();
+const defaultStopDate = "2023-11-25 15:00:00";
+
+const countToDate = userDateInput?new Date(userDateInput).getTime():new Date(defaultStopDate).getTime();
 let previousTimeBetweenDates;
 
 setInterval(() => {
