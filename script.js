@@ -1,12 +1,22 @@
-const countToDate = new Date().setHours(new Date().getHours() + 24)
-let previousTimeBetweenDates
-setInterval(() => {
-  const currentDate = new Date()
-  const timeBetweenDates = Math.ceil((countToDate - currentDate) / 1000)
-  flipAllCards(timeBetweenDates)
+const storedUserDate = localStorage.getItem('userDate');
+const userDateInput = storedUserDate || prompt("Enter the future date (YYYY-MM-DD HH:MM:SS):");
+localStorage.setItem('userDate', userDateInput);
 
-  previousTimeBetweenDates = timeBetweenDates
-}, 250)
+const countToDate = new Date(userDateInput).getTime();
+let previousTimeBetweenDates;
+
+setInterval(() => {
+  const currentDate = new Date();
+  const timeBetweenDates = Math.ceil((countToDate - currentDate) / 1000);
+
+  if (timeBetweenDates >= 0) {
+    flipAllCards(timeBetweenDates);
+    previousTimeBetweenDates = timeBetweenDates;
+  } else {
+    // Handle the case when the countdown is complete
+    console.log("Countdown complete!");
+  }
+}, 250);
 
 function flipAllCards(time) {
   const seconds = time % 60
