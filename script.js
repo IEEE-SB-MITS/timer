@@ -1,3 +1,15 @@
+// const countToDate = new Date().setHours(new Date().getHours() + 24)
+// let previousTimeBetweenDates
+// setInterval(() => {
+//   const currentDate = new Date()
+//   const timeBetweenDates = Math.ceil((countToDate - currentDate) / 1000)
+//   flipAllCards(timeBetweenDates)
+
+//   previousTimeBetweenDates = timeBetweenDates
+// }, 250)
+
+
+
 const storedUserDate = localStorage.getItem('userDate');
 const userDateInput = storedUserDate || prompt("Enter the future date (YYYY-MM-DD HH:MM:SS):");
 localStorage.setItem('userDate', userDateInput);
